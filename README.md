@@ -20,3 +20,13 @@ cd <ATS_PROJECT_PATH>
 docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux:latest sh -c "cd /home/ats-user/ats-project && java AtsLauncher.java outbound=false atsreport=3 suiteXmlFiles=demo"
 ```
 > Reports and result files will be created in ***target/ats-output*** folder
+
+## Run in an ATS project with Maven
+
+Open a PowerShell console and run the following command :
+
+```
+cd <ATS_PROJECT_PATH>
+docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux:latest sh -c "cd /home/ats-user/ats-project && mvn clean test -Doutbound=false -Datsreport=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
+```
+> Reports and result files will be created in ***target/surefire-reports*** folder
