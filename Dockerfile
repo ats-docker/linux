@@ -16,9 +16,10 @@ ARG PATH_LIBS=releases/ats-libs/
 ARG PATH_TOOLS_LIBS=tools/jdk/linux/
 ARG PATH_TOOLS_JASPER=tools/jasper/
 ARG ATS_VERSION="2.9.7"
-ENV ATS_VERSION=$ATS_VERSION
 
+ENV ATS_VERSION=$ATS_VERSION
 ENV JASPER_HOME=${ATS_TOOLS}jasper
+ENV ATS_HOME=${ATS_USER_HOME}ats/cache/$ATS_VERSION
 
 #Get Maven dependencies used by ATS projects
 RUN echo "<settings><localRepository>${MAVEN_LOCAL_REPO}</localRepository></settings>" > /opt/maven/settings.xml

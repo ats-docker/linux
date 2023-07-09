@@ -1,4 +1,4 @@
-## ActionTestScript linux
+## ActionTestScript with linux image
 ---
 ATS Linux image ready to launch ATS tests suite execution
 
@@ -27,6 +27,6 @@ Open a PowerShell console and run the following command :
 
 ```
 cd <ATS_PROJECT_PATH>
-docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux:latest sh -c "cd /home/ats-user/ats-project && mvn clean test -Doutbound=false -Datsreport=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
+docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux:latest sh -c "cd /home/ats-user/ats-project && mvn clean test -Doutbound=false -Dats-report=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
 ```
 > Reports and result files will be created in ***target/surefire-reports*** folder
