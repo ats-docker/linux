@@ -13,7 +13,7 @@ ARG PATH_DRIVERS=releases/ats-drivers/linux/system/
 ARG PATH_LIBS=releases/ats-libs/
 ARG PATH_TOOLS_LIBS=tools/jdk/linux/
 ARG PATH_TOOLS_JASPER=tools/jasper/
-ARG ATS_VERSION=""
+ARG ATS_VERSION="2.9.7"
 ENV ATS_VERSION=$ATS_VERSION
 
 #Install Ats Components
