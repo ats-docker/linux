@@ -1,44 +1,41 @@
-## ActionTestScript with linux image
----
-ATS Linux image ready to launch ATS tests suite execution
+# ActionTestScript test execution with Linux image
 
-## Quick Start with ATS git project
+ATS Docker Linux image ready to launch ATS tests suite executions *([ActionTestScript](https://actiontestscript.com) is an open source project)*
 
-Open a PowerShell console and run the following command :
+## Quick Start with ATS Git project
 
-```
-cd <ATS_PROJECT_PATH>
-docker run --rm -it -v ${PWD}\target-docker:/home/ats-results actiontestscript/linux:latest sh -c "git clone https://gitlab.com/actiontestscript/ats-test.git . && java AtsLauncher.java output=/home/ats-results/ats-output outbound=false atsreport=3 suiteXmlFiles=demo"
-```
-> Reports and result files will be created in **_target-docker/ats-output_** folder
+Open a PowerShell console, create a test folder and change to this directory, you can now run the following commands:
 
-## Run in local ATS project
-
-Open a PowerShell console and run the following command :
+#### Using AtsLauncher
 
 ```
-cd <ATS_PROJECT_PATH>
+docker run --rm -it -v ${PWD}\target:/home/ats-results actiontestscript/linux sh -c "git clone https://gitlab.com/actiontestscript/ats-test.git . && java AtsLauncher.java output=/home/ats-results/ats-output outbound=false atsreport=3 suiteXmlFiles=demo"
+```
+> Reports and result files will be created in **_target/ats-output_** folder
+
+#### Using Maven
+
+```
+docker run --rm -it -v ${PWD}:/home/ats-user/ats-test actiontestscript/linux:latest sh -c "git clone https://gitlab.com/actiontestscript/ats-test.git /home/ats-user/temp/ && cp -r /home/ats-user/temp/* /home/ats-user/ats-test && cd /home/ats-user/ats-test && mvn clean test -Doutbound=false -Dats-report=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
+```
+> Reports and result files will be created in ***target/surefire-reports*** folder
+
+<br>
+
+## Quick Start with local ATS project
+
+Open a PowerShell console and change to an ATS project directory, you can now run the following commands:
+
+#### Using AtsLauncher
+
+```
 docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux:latest sh -c "cd /home/ats-user/ats-project && java AtsLauncher.java outbound=false atsreport=3 suiteXmlFiles=demo"
 ```
 > Reports and result files will be created in ***target/ats-output*** folder
 
-## Run in local ATS project with Maven
-
-Open a PowerShell console and run the following command :
+#### Using Maven
 
 ```
-cd <ATS_PROJECT_PATH>
 docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux:latest sh -c "cd /home/ats-user/ats-project && mvn clean test -Doutbound=false -Dats-report=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
 ```
 > Reports and result files will be created in ***target/surefire-reports*** folder
-
-## Run in ATS git project and with Maven
-
-Open a PowerShell console and run the following command :
-
-```
-cd <ATS_PROJECT_PATH>
-docker run --rm -it -v ${PWD}:/home/ats-user/projects actiontestscript/linux:latest sh -c "cd /home/ats-user/projects && git clone https://gitlab.com/actiontestscript/ats-test.git . && mvn clean test -Doutbound=false -Dats-report=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
-```
-> Reports and result files will be created in ***target/surefire-reports*** folder
-
