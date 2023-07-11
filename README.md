@@ -1,6 +1,6 @@
 # ActionTestScript test execution with Linux image
 
-**For more [Examples and details](https://gitlab.com/actiontestscript/ats-core#docker)**
+**For more [Examples and details](https://gitlab.com/actiontestscript/ats-core#docker-integration)**
 
 ## Quick Start with ATS Git project
 
