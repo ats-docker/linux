@@ -26,8 +26,6 @@ RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositori
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=org.apache.maven.plugins:maven-surefire-plugin:3.1.2
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=org.apache.maven.surefire:surefire-testng:3.1.2
 
-RUN echo "<settings><offline>true</offline><localRepository>${MAVEN_LOCAL_REPO}</localRepository></settings>" > /opt/maven/settings.xml
-
 ARG ATS_VERSION="2.9.7"
 
 ENV ATS_VERSION=$ATS_VERSION
@@ -35,6 +33,9 @@ ENV JASPER_HOME=${ATS_TOOLS}jasper
 ENV ATS_HOME=${ATS_USER_HOME}ats/cache/$ATS_VERSION
 
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=com.actiontestscript:ats-automated-testing:$ATS_VERSION
+
+RUN echo "<settings><offline>true</offline><localRepository>${MAVEN_LOCAL_REPO}</localRepository></settings>" > /opt/maven/settings.xml
+
 RUN rm -rf ${MAVEN_LOCAL_REPO}/dom4j 
 RUN rm -rf ${MAVEN_LOCAL_REPO}/org/apache/maven/shared/maven-shared-utils/3.1.0
 
