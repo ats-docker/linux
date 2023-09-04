@@ -26,10 +26,10 @@ RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositori
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=org.apache.maven.plugins:maven-surefire-plugin:3.1.2
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=org.apache.maven.surefire:surefire-testng:3.1.2
 
-ARG ATS_VERSION="2.9.7"
+ARG ATS_VERSION="3.0.0"
 
 ENV ATS_VERSION=$ATS_VERSION
-ENV JASPER_HOME=${ATS_TOOLS}jasper
+ENV JASPER_HOME=${ATS_TOOLS}jasper-6.19.1
 ENV ATS_HOME=${ATS_USER_HOME}ats/cache/$ATS_VERSION
 
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=com.actiontestscript:ats-automated-testing:$ATS_VERSION
@@ -50,12 +50,12 @@ RUN mkdir -p ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-
   && unzip /tmp/atslibs.zip -d ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/libs \
   && rm -rf /tmp/* 
 
-RUN mkdir -p ${ATS_TOOLS}jasper \
+RUN mkdir -p ${ATS_TOOLS}jasper-6.19.1 \
   && curl -L -o /tmp/jasper.zip ${DOWNLOAD_WEB}${PATH_TOOLS_JASPER}$(curl -s "${DOWNLOAD_WEB}${PATH_TOOLS_JASPER}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1).zip \
-  && unzip /tmp/jasper.zip -d ${ATS_TOOLS}jasper \
+  && unzip /tmp/jasper.zip -d ${ATS_TOOLS} \
   && rm -rf /tmp/* 
 
-RUN ln -s ${JAVA_HOME} ${ATS_TOOLS}/jdk
+RUN ln -s ${JAVA_HOME} ${ATS_TOOLS}/jdk-20.0.1
 
 RUN apt-get update \
 && apt-get install -y wget \
