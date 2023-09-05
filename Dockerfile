@@ -52,10 +52,10 @@ RUN mkdir -p ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-
   && unzip /tmp/atslibs.zip -d ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/libs \
   && rm -rf /tmp/* 
 
-RUN mkdir -p ${ATS_TOOLS}jasper-6.19.1 
-#  && curl -L -o /tmp/jasper.zip ${DOWNLOAD_WEB}${PATH_TOOLS_JASPER}$(curl -s "${DOWNLOAD_WEB}${PATH_TOOLS_JASPER}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1).zip \
-#  && unzip /tmp/jasper.zip -d ${ATS_TOOLS} \
-#  && rm -rf /tmp/* 
+RUN mkdir -p ${ATS_TOOLS}jasper-6.19.1 \
+  && curl -L -o /tmp/jasper.zip ${DOWNLOAD_WEB}${PATH_TOOLS_JASPER}$(curl -s "${DOWNLOAD_WEB}${PATH_TOOLS_JASPER}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1).zip \
+  && unzip /tmp/jasper.zip -d ${ATS_TOOLS} \
+  && rm -rf /tmp/* 
 
 
 RUN ln -s ${JAVA_HOME} ${ATS_TOOLS}jdk-20.0.1
@@ -64,8 +64,10 @@ RUN ln -s ${JAVA_HOME} ${ATS_TOOLS}jdk-20.0.1
 RUN apt-get update \
 && apt-get install -y wget 
 
-#RUN cd ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/drivers && ./linuxdriver --allWebDriver=true \
+RUN cd ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/drivers 
+#&& ./linuxdriver --allWebDriver=true \
 #&& chown -R ats-user:ats-user ${ATS_USER_HOME} 
+RUN chown -R ats-user:ats-user ${ATS_USER_HOME} 
 
 RUN apt-get remove -y  \
 && apt-get clean \
