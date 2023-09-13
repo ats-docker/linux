@@ -64,9 +64,9 @@ RUN ln -s ${JAVA_HOME} ${ATS_TOOLS}jdk-20.0.1
 RUN apt-get update \
 && apt-get install -y wget 
 
-RUN cd ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/drivers 
-#&& ./linuxdriver --allWebDriver=true \
-#&& chown -R ats-user:ats-user ${ATS_USER_HOME} 
+RUN cd ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/drivers  \
+&& ./linuxdriver --allWebDriver=true \
+&& chown -R ats-user:ats-user ${ATS_USER_HOME} 
 RUN chown -R ats-user:ats-user ${ATS_USER_HOME} 
 
 RUN apt-get remove -y  \
