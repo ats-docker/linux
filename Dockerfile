@@ -28,7 +28,7 @@ RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositori
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=org.apache.maven.plugins:maven-surefire-plugin:3.1.2
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=org.apache.maven.surefire:surefire-testng:3.1.2
 
-ARG ATS_VERSION="3.0.6"
+ARG ATS_VERSION="3.0.9"
 
 ENV ATS_VERSION=$ATS_VERSION
 ENV JASPER_HOME=${ATS_TOOLS}jasper-6.19.1
@@ -64,9 +64,9 @@ RUN ln -s ${JAVA_HOME} ${ATS_TOOLS}jdk-20.0.1
 RUN apt-get update \
 && apt-get install -y wget 
 
-RUN cd ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/drivers  \
-&& ./linuxdriver --allWebDriver=true \
-&& chown -R ats-user:ats-user ${ATS_USER_HOME} 
+#RUN cd ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/drivers  \
+#&& ./linuxdriver --allWebDriver=true \
+#&& chown -R ats-user:ats-user ${ATS_USER_HOME} 
 RUN chown -R ats-user:ats-user ${ATS_USER_HOME} 
 
 RUN apt-get remove -y  \
@@ -74,6 +74,10 @@ RUN apt-get remove -y  \
 && rm -rf /var/lib/apt/lists/*
 
 USER ats-user
+RUN cd ${ATS_CACHE}$(curl -s "${DOWNLOAD_WEB}${PATH_LIBS}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | sort -V | tail -n 1)/drivers  \
+&& ./linuxdriver --allWebDriver=true 
+ 
+
 
 RUN mkdir -p ${ATS_PROFILES} && mkdir -p ${ATS_PROJECTS} && mkdir -p ${ATS_OUTPUTS} 
 
