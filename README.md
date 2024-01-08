@@ -16,7 +16,7 @@ docker run --rm -it -v ${PWD}\target:/home/ats-user/ats-test actiontestscript/li
 #### Using Maven
 
 ```
-docker run --rm -it -v ${PWD}:/home/ats-user/ats-test actiontestscript/linux sh -c "git clone https://gitlab.com/actiontestscript/ats-test.git /home/ats-user/temp/ && cp -r /home/ats-user/temp/* /home/ats-user/ats-test && cd /home/ats-user/ats-test && mvn clean test -Doutbound=false -Dats-report=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
+docker run --rm -it -v ${PWD}\target:/home/ats-user/outputs actiontestscript/linux sh -c "git clone https://gitlab.com/actiontestscript/ats-test.git /home/ats-user/temp/ && cp -r /home/ats-user/temp/* /home/ats-user/projects && cd /home/ats-user/projects && mvn clean test -Doutbound=false -Dats-report=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml -Doutput=/home/ats-user/outputs"
 ```
 > Reports and result files will be created in ***target/surefire-reports*** folder
 
