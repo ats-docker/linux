@@ -28,7 +28,7 @@ RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositori
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=org.apache.maven.plugins:maven-surefire-plugin:3.1.2
 RUN mvn dependency:get -Dmaven.repo.local=${MAVEN_LOCAL_REPO} -DremoteRepositories=https://repo1.maven.org/maven2 -Dartifact=org.apache.maven.surefire:surefire-testng:3.1.2
 
-ARG ATS_VERSION="3.1.1"
+ARG ATS_VERSION="3.2.2"
 
 ENV ATS_VERSION=$ATS_VERSION
 ENV JASPER_HOME=${ATS_TOOLS}jasper-6.19.1
