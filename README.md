@@ -31,10 +31,12 @@ Open a PowerShell console and change to an ATS project directory, you can now ru
 ```
 docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux sh -c "java AtsLauncher.java outbound=false atsreport=3 suiteXmlFiles=demo"
 ```
-(You can run the tests using the CMD console too)
+
+_(You can run the tests using the CMD console too)_
 ```
 docker run --rm -it -v %cd%:/home/ats-user/ats-project actiontestscript/linux sh -c "java AtsLauncher.java outbound=false atsreport=3 suiteXmlFiles=demo"
 ```
+
 
 > Reports and result files will be created in ***target/ats-output*** folder
 
