@@ -43,7 +43,7 @@ docker run --rm -it -v %cd%:/home/ats-user/ats-project actiontestscript/linux sh
 #### Using Maven
 
 ```
-docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux sh -c "cd /home/ats-user/ats-project && mvn clean test -Doutbound=false -Dats-report=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
+docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux sh -c "mvn clean test -Doutbound=false -Dats-report=3 -Dsurefire.suiteXmlFiles=src/exec/demo.xml"
 ```
 > Reports and result files will be created in ***target/surefire-reports*** folder
 
@@ -56,7 +56,7 @@ docker run --rm -it -v ${PWD}:/home/ats-user/ats-project actiontestscript/linux 
 - [ActionTestScript Docker images on Windows](https://hub.docker.com/r/actiontestscript/windows)
 
 ## Description
-ATS Docker Linux image ready to launch ATS tests suite executions *([ActionTestScript](https://actiontestscript.com) is an open source project)*
+ATS Docker Linux image ready to launch ATS tests suite executions *([ActionTestScript](https://actiontestscript.org) is an open source project)*
 
 It build from actiontestscript/linux-browsers. It contains the following packages:
 
