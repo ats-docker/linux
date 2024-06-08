@@ -9,7 +9,7 @@ Open a PowerShell console, create a test folder and change to this directory, yo
 #### Using AtsLauncher
 
 ```
-docker run --rm -it -v ${PWD}/target:/home/ats-user/ats-test actiontestscript/linux sh -c "git clone https://gitlab.com/actiontestscript/ats-test.git . && java AtsLauncher.java output=/home/ats-user/ats-test/ats-output outbound=false atsreport=3 suiteXmlFiles=demo"
+docker run --rm -it -v ${PWD}/target:/home/ats-user/ats-output actiontestscript/linux sh -c "git clone https://gitlab.com/actiontestscript/ats-test.git . && java AtsLauncher.java outbound=false ats-report=3 suiteXmlFiles=demo output=/home/ats-user/ats-output"
 ```
 > Reports and result files will be created in ***target/ats-output*** folder
 
